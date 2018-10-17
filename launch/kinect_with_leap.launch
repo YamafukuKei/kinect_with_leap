@@ -20,7 +20,7 @@
 
   <!-- Start the visualization node and make a tf so ROS and Leap orientations are the same-->
   <node pkg="leap_motion" type="leap_motion_visualizer_node" name="leap_visualizer" output="screen" />
-  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 0.707 0 0 0.707 world leap_hands 100" />
+  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 0.707 0 0 0.707 kinect leap_hands 100" />
 
   <!-- Load the filter parameters and start the filter node -->
   <rosparam file="$(find leap_motion)/config/filter_params.yaml" command="load" />
@@ -32,7 +32,7 @@
 
       <!-- Start the node that generates the pointcloud and a tf to orientate it the right way-->
       <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image" output="screen"/>
-      <node pkg="tf" type="static_transform_publisher" name="link2_broadcaster" args="0 0 0 0 0 1 0 world leap_pointcloud 100" />
+      <node pkg="tf" type="static_transform_publisher" name="link2_broadcaster" args="0 0 0 0 0 1 0 kinect leap_pointcloud 100" />
   </group>
 
   <!-- RViz -->

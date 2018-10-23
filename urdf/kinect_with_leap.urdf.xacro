@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
-<robot name="teaching_base" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="teaching_booth" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find kinect_bringup)/urdf/common.xacro" />
   <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.urdf.xacro"/>
   <xacro:include filename="$(find kinect_bringup)/urdf/sensor/kinect.gazebo.xacro"/>
+  <!-- <xacro:include filename="$(find kinect_with_leap)/urdf/leap.urdf.xacro"/> -->
 
   <link name="world"/>
 
@@ -51,5 +52,16 @@
 
   <!-- Gazebo -->
   <!-- <xacro:kinect_gazebo name="kinect_side"/> -->
+
+  <!-- Add Leap Motion -->
+  <!-- Link -->
+  <link name="leap_motion_link"/>
+
+  <!-- Joint -->
+  <joint name="leap_motion_joint" type="fixed">
+    <origin xyz="0.057 0 0.565" rpy="${M_PI/2} ${M_PI} 0"/>
+    <parent link="world"/>
+    <child link="leap_motion_link"/>
+  </joint>
 
 </robot>
